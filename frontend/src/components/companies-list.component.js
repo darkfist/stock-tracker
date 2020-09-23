@@ -23,7 +23,7 @@ export default function CompaniesList() {
     });
 
     useEffect(() => {
-        axios.get('http://localhost:5000/companies/')
+        axios.get('https://stock-tracker-app-backend.herokuapp.com/companies/')
             .then(response => {
                 if(response.data.length > 0) {
                     var defaultCompanyName = response.data[0].companyName;
@@ -49,7 +49,7 @@ export default function CompaniesList() {
                     });
                 }
             })
-        }, []
+        }, [companyList, displayList, stockValueList]
     )
 
     function showStockValues(event) {
@@ -66,7 +66,7 @@ export default function CompaniesList() {
             [keyname]: [companyName, companyId]
         })
 
-        axios.get('http://localhost:5000/companies/' + companyId)
+        axios.get('https://stock-tracker-app-backend.herokuapp.com/companies/' + companyId)
         .then(response => {
             if (keyname === 'selectBox1') {
                 setStockValueList({

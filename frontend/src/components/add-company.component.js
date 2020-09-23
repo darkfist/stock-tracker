@@ -11,7 +11,7 @@ export default function AddCompany() {
     var [companyList, setCompanyList] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/companies/')
+        axios.get('https://stock-tracker-app-backend.herokuapp.com/companies/')
             .then(response => {
                 setCompanyList(response.data)
             })
@@ -19,7 +19,7 @@ export default function AddCompany() {
     );
 
     function deleteCompany(id) {
-        axios.delete('http://localhost:5000/companies/' + id)
+        axios.delete('https://stock-tracker-app-backend.herokuapp.com/companies/' + id)
             .then(res => console.log(res.data));
         setCompanyList(companyList.filter(el => el._id !== id));
     }
@@ -52,7 +52,7 @@ export default function AddCompany() {
             stockValues: company.stockValues
         }
 
-        axios.post('http://localhost:5000/companies/add', createdCompany)
+        axios.post('https://stock-tracker-app-backend.herokuapp.com/companies/add', createdCompany)
             .then(res => console.log(res.data));
 
         window.location = '/add-company';
@@ -108,9 +108,8 @@ export default function AddCompany() {
                             &nbsp;&nbsp;&nbsp;
                             <input  type="button" 
                                     onClick = {generateStockValues} 
-                                    className = "form-control"
-                                    value="Generate Values" 
-                                    className="btn btn-info" />
+                                    className = "form-control btn btn-info"
+                                    value="Generate Values" />
                         </div>
 
                         <div className="form-group ">
