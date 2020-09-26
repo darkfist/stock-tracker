@@ -1,7 +1,24 @@
-import React, { useEffect,  } from 'react'
+import React, { useEffect, } from 'react'
 import Chart from "chart.js";
 
 export default function Visualization(props) {
+    const datasetProperties = {
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: "rgba(225,0,0,0.4)",
+        borderCapStyle: 'square',
+        borderJoinStyle: 'miter',
+        pointBorderColor: "black",
+        pointBackgroundColor: "white",
+        pointBorderWidth: 1,
+        pointHoverRadius: 8,
+        pointHoverBackgroundColor: "yellow",
+        pointHoverBorderColor: "brown",
+        pointHoverBorderWidth: 2,
+        pointRadius: 4,
+        pointHitRadius: 10,
+    }
+    
     useEffect(() => {
         var canvas = document.querySelector('canvas')
         var ctx = canvas.getContext('2d')
@@ -11,92 +28,40 @@ export default function Visualization(props) {
             data: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
                 datasets: [{
-                    label: props.displayList.selectBox1[0],
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(225,0,0,0.4)",
-                    borderColor: "red", // The main line color
-                    borderCapStyle: 'square',
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "black",
-                    pointBackgroundColor: "white",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 8,
-                    pointHoverBackgroundColor: "yellow",
-                    pointHoverBorderColor: "brown",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHitRadius: 10,
-                    data: props.stockValueList.stockValue1
+                    label: props.displayList.selectBox1.companyName,
+                    data: props.displayList.selectBox1.stockValues,
+                    borderColor: "red",
+                    ...datasetProperties
                 }, {
-                    label: props.displayList.selectBox2[0],
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(225,0,0,0.4)",
-                    borderColor: "purple", // The main line color
-                    borderCapStyle: 'square',
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "black",
-                    pointBackgroundColor: "white",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 8,
-                    pointHoverBackgroundColor: "yellow",
-                    pointHoverBorderColor: "brown",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHitRadius: 10,
-                    data: props.stockValueList.stockValue2
+                    label: props.displayList.selectBox2.companyName,
+                    data: props.displayList.selectBox2.stockValues,
+                    borderColor: "purple",
+                    ...datasetProperties
                 }, {
-                    label: props.displayList.selectBox3[0],
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(225,0,0,0.4)",
-                    borderColor: "green", // The main line color
-                    borderCapStyle: 'square',
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "black",
-                    pointBackgroundColor: "white",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 8,
-                    pointHoverBackgroundColor: "yellow",
-                    pointHoverBorderColor: "brown",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHitRadius: 10,
-                    data: props.stockValueList.stockValue3
+                    label: props.displayList.selectBox3.companyName,
+                    data: props.displayList.selectBox3.stockValues,
+                    borderColor: "green",
+                    ...datasetProperties
                 }, {
-                    label: props.displayList.selectBox4[0],
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: "rgba(225,0,0,0.4)",
-                    borderColor: "blue", // The main line color
-                    borderCapStyle: 'square',
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: "black",
-                    pointBackgroundColor: "white",
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 8,
-                    pointHoverBackgroundColor: "yellow",
-                    pointHoverBorderColor: "brown",
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 4,
-                    pointHitRadius: 10,
-                    data: props.stockValueList.stockValue4
-                }, ]
+                    label: props.displayList.selectBox4.companyName,
+                    data: props.displayList.selectBox4.stockValues,
+                    borderColor: "blue",
+                    ...datasetProperties
+                },]
             },
             options: {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true,
+                            beginAtZero: true,
                         },
                         scaleLabel: {
                             display: true,
                             labelString: 'Performance',
                             fontSize: 15
                         }
-                    }]            
-                }  
+                    }]
+                }
             }
         }
 
@@ -107,6 +72,7 @@ export default function Visualization(props) {
     return (
         <div >
             <canvas />
+            {console.log(props)}
         </div>
     )
 };
