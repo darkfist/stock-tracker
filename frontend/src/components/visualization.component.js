@@ -1,4 +1,4 @@
-import React, { useEffect, } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Chart from "chart.js";
 
 export default function Visualization(props) {
@@ -18,61 +18,76 @@ export default function Visualization(props) {
         pointRadius: 4,
         pointHitRadius: 10,
     }
-    
-    useEffect(() => {
-        var canvas = document.querySelector('canvas')
-        var ctx = canvas.getContext('2d')
 
-        var options = {
-            type: 'line',
-            data: {
-                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                datasets: [{
-                    label: props.displayList.selectBox1.companyName,
-                    data: props.displayList.selectBox1.stockValues,
-                    borderColor: "red",
-                    ...datasetProperties
-                }, {
-                    label: props.displayList.selectBox2.companyName,
-                    data: props.displayList.selectBox2.stockValues,
-                    borderColor: "purple",
-                    ...datasetProperties
-                }, {
-                    label: props.displayList.selectBox3.companyName,
-                    data: props.displayList.selectBox3.stockValues,
-                    borderColor: "green",
-                    ...datasetProperties
-                }, {
-                    label: props.displayList.selectBox4.companyName,
-                    data: props.displayList.selectBox4.stockValues,
-                    borderColor: "blue",
-                    ...datasetProperties
-                },]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true,
-                        },
-                        scaleLabel: {
-                            display: true,
-                            labelString: 'Performance',
-                            fontSize: 15
-                        }
-                    }]
-                }
+    var options = {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: props.displayList.selectBox1.companyName,
+                data: props.displayList.selectBox1.stockValues,
+                borderColor: "red",
+                ...datasetProperties
+            }, {
+                label: props.displayList.selectBox2.companyName,
+                data: props.displayList.selectBox2.stockValues,
+                borderColor: "purple",
+                ...datasetProperties
+            }, {
+                label: props.displayList.selectBox3.companyName,
+                data: props.displayList.selectBox3.stockValues,
+                borderColor: "green",
+                ...datasetProperties
+            }, {
+                label: props.displayList.selectBox4.companyName,
+                data: props.displayList.selectBox4.stockValues,
+                borderColor: "blue",
+                ...datasetProperties
+            },]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Performance',
+                        fontSize: 15
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Months',
+                        fontSize: 15
+                    }
+                }]
             }
         }
+    }
 
-        new Chart(ctx, options)
-    }, [props]);
+    var myChart = useRef();
+
+    useEffect(() => {
+        const canvas = document.querySelector('canvas');
+        const ctx = canvas.getContext('2d');
+
+        if(myChart.current !== undefined) {
+            myChart.current.destroy();
+        }
+
+        myChart.current = new Chart(ctx, options);
+    }, [options]);
 
 
     return (
         <div >
             <canvas />
-            {console.log(props)}
         </div>
     )
 };

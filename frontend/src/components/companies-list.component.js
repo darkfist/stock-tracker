@@ -55,7 +55,7 @@ export default function CompaniesList() {
                 <div className="row">
                     <div className="col col-3 card card-body bg-light">
                         <div className="form-group">
-                            <label>Select Company 1: </label>
+                            <label>Company 1: </label>
                             <select required className="form-control"
                                 id="selectBox1"
                                 onChange={showStockValues}>
@@ -67,11 +67,9 @@ export default function CompaniesList() {
                         </div>
                     </div>
 
-                    {/* {console.log(companyList)} */}
-
                     <div className="col col-3 card card-body bg-light">
                         <div className="form-group">
-                            <label>Select Company 2: </label>
+                            <label>Company 2: </label>
                             <select required className="form-control"
                                 id="selectBox2"
                                 onChange={showStockValues}>
@@ -87,7 +85,7 @@ export default function CompaniesList() {
 
                     <div className="col col-3 card card-body bg-light">
                         <div className="form-group">
-                            <label>Select Company 3: </label>
+                            <label>Company 3: </label>
                             <select required className="form-control"
                                 id="selectBox3"
                                 onChange={showStockValues}>
@@ -108,7 +106,7 @@ export default function CompaniesList() {
 
                     <div className="col col-3 card card-body bg-light">
                         <div className="form-group">
-                            <label>Select Company 4: </label>
+                            <label>Company 4: </label>
                             <select required className="form-control"
                                 id="selectBox4"
                                 onChange={showStockValues}>
